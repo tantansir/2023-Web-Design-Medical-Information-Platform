@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ch">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>用户注册</title>
+    <link rel="icon" type="image/x-icon" href="/static/img/slogan.jpg">
+    <link rel="stylesheet" href="/static/bootstrap/css/login_bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/component.css">
+    <link rel="stylesheet" href="/static/css/Login-Form-Basic-icons.css">
+</head>
+
+<body>
+<nav class="navbar navbar-light navbar-expand py-3" style="box-shadow: 0px 0px 6px;">
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-center">
+            <img class="bs-icon-lg bs-icon-rounded bs-icon-primary d-flex justify-content-center align-items-center me-2 bs-icon"
+                 src="/static/img/slogan.jpg">
+            <a style="font-size: 40px;" class="nav-link active" href="../">医云</a>
+        </a>
+        <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navcol-3">
+            <span class="visually-hidden">Toggle navigation</span>
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navcol-3" style="font-weight: bold;color: #000000;font-size: 22px;">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item"><a class="nav-link active" href="../user/">我的主页</a></li>
+                <li class="nav-item"><a class="nav-link active" href="../info/">信息公开</a></li>
+                <li class="nav-item"><a class="nav-link" href="../recommend/" style="color: rgba(0,0,0,0.9);">医院推荐</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'forum:hot' 1 %}" style="color: rgba(0,0,0,0.9);">社区论坛</a></li>
+            </ul>
+        </div>
+        <button class="btn btn-primary" type="button" style="font-size: 20px;font-weight: bold;">登录/注册</button>
+    </div>
+</nav>
+<section class="py-4 py-xl-5"
+         style="background: url(&quot;/static/img/bg-masthead.jpg&quot;) center / cover;height: 750px;">
+    <section class="text-center text-white call-to-action" style="height: 102.7px;margin: 0px;">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-xl-9 mx-auto position-relative">
+                    <h2 class="mb-4"
+                        style="padding: 9px;font-weight: bold;text-align: center;font-size: 43.1px;padding-top: 33px;">
+                        <br><strong>准备好了吗？即刻启程医云之旅！</strong><br><br></h2>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="container">
+        <div class="row d-flex justify-content-center"
+             style="height: 369px;padding: 0px;padding-bottom: 0px;padding-top: 66px;">
+            <div class="col-md-6 col-xl-4">
+                <div class="card mb-5">
+                    <div class="card-body d-flex flex-column align-items-center"
+                         style="padding: 15px;margin: -4px;height: 333px;">
+                        <div class="bs-icon-xl bs-icon-circle bs-icon-primary bs-icon my-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
+                                 viewBox="0 0 16 16" class="bi bi-person">
+                                <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"></path>
+                            </svg>
+                        </div>
+                        <form class="text-center" method="post" action="/register/">
+
+                            {% csrf_token %}
+
+                            <div class="mb-3"><input class="form-control" type="text" name="user" placeholder="用户名">
+                            </div>
+                            <div class="mb-3"><input class="form-control" type="password" name="pwd" placeholder="密码">
+                            </div>
+                            <div class="mb-3">
+                                <button class="btn btn-primary d-block w-100" type="submit" style="font-weight: bold;">
+                                    注册
+                                </button>
+                            </div>
+                            {% if message %}
+                            <script>
+                                mes = "{{message}}";
+                                if (!mes.match("message"))
+                                    alert(mes);
+                            </script>
+                            {% endif %}
+                        </form>
+                        <span style="color: red;">{{ error_msg }}</span>
+                        <p></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="/static/bootstrap/js/login_bootstrap.min.js"></script>
+</body>
+
+</html>

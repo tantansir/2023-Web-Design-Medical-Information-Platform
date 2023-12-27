@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="ch">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>医院推荐</title>
+    <link rel="icon" type="image/x-icon" href="/static/img/slogan.jpg">
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Noto+Sans:300,400,500,600,700&amp;display=swap">
+    <link rel="stylesheet" href="/static/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="/static/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/fonts/simple-line-icons.min.css">
+    <link rel="stylesheet" href="/static/fonts/fontawesome5-overrides.min.css">
+    <link rel="stylesheet" href="/static/css/Account-setting-or-edit-profile.css">
+    <link rel="stylesheet" href="/static/css/Collapsible-Sidebar.css">
+    <link rel="stylesheet" href="/static/css/component.css">
+
+    <link rel="stylesheet" href="/static/css/Login-Form-Basic-icons.css">
+</head>
+
+<body style="height: 880px;background: url(&quot;/static/img/bg-masthead.jpg&quot;) center / cover no-repeat;">
+<nav class="navbar navbar-light navbar-expand py-3" style="box-shadow: 0px 0px 6px;">
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-center">
+            <img class="bs-icon-lg bs-icon-rounded bs-icon-primary d-flex justify-content-center align-items-center me-2 bs-icon"
+                 src="/static/img/slogan.jpg">
+            <a style="font-size: 40px;" class="nav-link active" href="../../">医云</a>
+        </a>
+        <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navcol-3">
+            <span class="visually-hidden">Toggle navigation</span>
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div id="navcol-3" class="collapse navbar-collapse" style="font-weight: bold;color: #000000;font-size: 22px;">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item"><a class="nav-link active" href="../../user/">我的主页</a></li>
+                <li class="nav-item"><a class="nav-link active" href="../../info/">信息公开</a></li>
+                <li class="nav-item"><a class="nav-link" href="../../recommend/"
+                                        style="color: rgba(0,0,0,0.9);">医院推荐</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'forum:hot' 1 %}" style="color: rgba(0,0,0,0.9);">社区论坛</a>
+                </li>
+            </ul>
+
+        </div>
+        {% if user.is_authenticated %}
+        <span style="font-size: 18px;">欢迎您<br/>{{user.username}}</span>
+
+        <div class="dropdown">
+            <a class="btn btn-Info dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" href="#"
+               role="button" style="margin-right: 25px;">
+                <i class="bi bi-person-circle" style="font-size: 15px;"></i>
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="rgb(13, 110, 253)"
+                     class="bi bi-person-circle" viewBox="0 0 16 16">
+                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                    <path fill-rule="evenodd"
+                          d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                </svg>
+            </a>
+
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="../../user/">我的主页</a></li>
+                <li><a class="dropdown-item" href="{%url 'logout'%}">登出账户</a></li>
+
+
+            </ul>
+        </div>
+        {% else %}
+        <button class="btn btn-primary" type="button" style="font-size: 20px;font-weight: bold;"
+                onclick="window.location.href = '../../login/'">登录/注册
+        </button>
+        {% endif %}
+    </div>
+</nav>
+
+
+<div class="container " >
+    <div class="row"
+         style="background: transparent;height: 112px;margin-top: 0px;margin-bottom: 6px;padding-top: 1px;text-align: center;">
+        <div class="col-md-12 col-lg-4 col-xl-12" style="height: 184px;">
+            <div class="mx-auto features-icons-item mb-5 mb-lg-0 mb-lg-3">
+                <div class="d-flex features-icons-icon"></div>
+                <h3 style="font-size: 60px;color: rgb(255,255,255);"><i class="icon-layers text-center" style="padding-top: 0px;padding-left: 0px;padding-bottom: 0px;font-size: 54px;"></i>&nbsp;医院推荐
+                </h3>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-10">
+    <form id="form1" style="display:inline-block;z-index:-1;">
+    <div class="row" style="float:left;background: #ffffff;height: 74px;margin-top: 0px;margin-bottom: -21px;width:1320px;">
+
+
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+        <div class="col-xl-2 align-self-center">
+          <div class="form-check">
+            <input type="radio" id="formCheck-1" class="form-check-input" name="address_select" onclick="setDefaultAddress()">
+            <label class="form-label form-check-label" for="formCheck-1" style="font-weight: bold;font-size: 19px;color: rgb(120,120,111);">
+              默认地址
+            </label>
+          </div>
+        </div>
+
+        <div class="col-xl-2 align-self-center">
+          <div class="form-check">
+            <input class="form-check-input" type="radio" id="formCheck-2" name="address_select" onclick="clearInput()">
+            <label class="form-check-label" for="formCheck-2" style="font-weight: bold;font-size: 19px;color: rgb(120,120,111);">
+              手动输入地址
+            </label>
+          </div>
+        </div>
+
+
+        <div class="col-xl-2 align-self-center">
+            <div>
+              <input type="text" name="address" id="fullName" class="form-control" placeholder="格式：区县+街道xxx号" style="margin-left: -20px;font-size: 20px;width: 450px;">
+            </div>
+        </div>
+
+
+    </div>
+</form>
+    </div>
+
+
+        <div class="col-xl-2 align-self-center">
+            <button class="btn btn-primary" id="submitBtn222" onclick="submitForm()"
+                    style="margin-right: 0px;margin-left: 180px;font-size: 24px;width: 124px;margin-right: 0px; margin-left: 0px;margin-bottom: -10px">搜索医院
+            </button>
+        </div>
+    </div>
+
+    <div class="row" style="height: 586px;">
+        <div class="col-xl-2 align-self-center"
+             style="margin-top: -23px;padding-right: 0px;padding-left: 0px;margin-right: 12px;">
+            <div class="wrapper">
+                <nav id="sidebar" style="background: #ffffff;height: 566px;margin-top: 47px;padding-bottom: 0px;">
+                    <div class="sidebar-header"
+                         style="background: #ffffff;box-shadow: 0px 0px 8px;text-align: center;height: 77.8px;">
+                        <h4 style="color: rgb(111,108,108);font-size: 34px;font-weight: bold;padding-top: 0px;">
+                            病症首字母</h4>
+                    </div>
+                    <ul class="list-unstyled components"
+                        style="margin-bottom: 35px;margin-top: 0px;padding-bottom: 140px;height: 412.8px;">
+                        <li style="font-size: 25px;text-align: center;color: rgb(120, 120, 111);"><a href="../recommend/?search_query=A~E">A~E</a>
+
+                        </li>
+                        <li><a class="pageSubmenu" href="../recommend/?search_query=F~J" data-toggle="collapse" aria-expanded="false"
+                               style="font-size: 27px;text-align: center;">F~J</a>
+
+                        </li>
+                        <li><a class="pageSubmenu" href="../recommend/?search_query=K~O" data-toggle="collapse" aria-expanded="false"
+                               style="font-size: 27px;text-align: center;">K~O</a>
+
+                        <li style="font-size: 25px;text-align: center;"><a href="../recommend/?search_query=P~T">P~T</a>
+
+                        </li>
+                        <li style="font-size: 25px;text-align: center;"><a href="../recommend/?search_query=U~Z或其他">U~Z或其他</a>
+
+                        </li>
+                    </ul>
+                    <div class="text-center" id="social-icons-sb"
+                         style="padding-top: 0px;margin-top: -17px;margin-bottom: 0px;height: 169px;"><a
+                            class="btn btn-social-icon btn-facebook" role="button"><i class="fa fa-wechat"
+                                                                                      style="color: rgb(13,110,253);"></i></a><a
+                            class="btn btn-social-icon btn-instagram" role="button"><i class="fab fa-qq"
+                                                                                       style="color: rgb(13,110,253);"></i></a><a
+                            class="btn btn-social-icon btn-twitter" role="button"><i class="fab fa-github"
+                                                                                     style="color: rgb(13,110,253);"></i></a>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <div class="col"
+             style="height: 564.6px;margin-left: 23px;margin-bottom: 0px;margin-top: 25px;padding-top: 14px;background: #ffffff;">
+            <div class="container">
+                <div class="row gutters" >
+                {% if is_result == False %}
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                                <div class="d-flex align-items-center">
+                                  <h6 class="text-primary mb-2" style="font-size: 34px; font-weight: bold; color: rgb(111, 108, 108); padding-top: 6px; display: inline;">
+                                    相关病症
+                                  </h6>
+
+                                  <form method="GET" class="ms-auto">
+                                    <input type="text" name="search_query" style="height: 45px; margin-top: 0px; width: 500px;margin-right: 0px; margin-left: 100px;" placeholder="使用关键词搜索病症...">
+                                    <button class="btn btn-primary btn-lg" type="submit" style="font-weight: bold; height: 48px; text-align: left; margin-right: 100px; margin-left: 50px; margin-bottom: 2px;">
+                                      搜索
+                                    </button>
+                                  </form>
+                                </div>
+                                <hr>
+                            </div>
+
+                            <div class="container " style=" max-height: 460px;">
+                              <div class="d-flex flex-wrap overflow-auto" style="max-height: 460px; overflow-y: auto;">
+
+
+                                {% for illness in illnesses %}
+
+                                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                                  <h3>
+                                    <input type="radio" class="btn-check" name="illness" id="{{ illness.name }}" autocomplete="off" for="{{ illness.name }}"
+                                    onclick="topFunction();setButtonText('{{ illness.name }}')">
+                                    <label class="btn btn-outline-primary me-2 mb-2" for="{{ illness.name }}">{{ illness.name }}</label>
+                                  </h3>
+                                </div>
+                                {% endfor %}
+
+                                  <form id="form2">
+                                      <input type="hidden" name="button_text" id="buttonText" value="">
+                                  </form>
+
+                              </div>
+                            </div>
+
+
+                {% else %}
+                    <div class="col">
+                        <section>
+                            <div class="row gutters">
+                                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"
+                                     style="padding-top: 0px;margin-bottom: 0px;margin-top: -5px;">
+                                    <h3 class="text-primary mb-2"
+                                        style="font-size: 34px;font-weight: bold;color: rgb(13, 110, 253);padding-top: 5px;padding-bottom: -2px;">
+                                        医院推荐<label class="form-label"
+                                                       style="font-size: 23px;text-align: right;">——<i
+                                            class="icon-paper-plane" style="font-size: 21px;"></i>距离优先</label></h3>
+                                    <hr>
+                                </div>
+            <div class="col d-flex flex-wrap overflow-auto" style="max-height: 460px; overflow-x: auto;">
+            {% for hospital,value in distance_dict_sorted.items %}
+            <a href="{% url 'forum:hospital_info' hospital.id %}" class="list-group-item list-group-item-action">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">{{ hospital.name }}</h4>
+                        <p class="mb-1">地址：{{ hospital.address }}</p>
+                        <p class="mb-1">电话：{{ hospital.telephone }}</p>
+
+                        {% if hospital.advantage_1 %}
+                        <p style="display: inline-block" class="mb-1">优势科室：{{ hospital.advantage_1 }}</p>
+                        {% endif %}
+                        {% if hospital.advantage_2 %}
+                        <p style="display: inline-block" class="mb-1">{{ hospital.advantage_2 }}</p>
+                        {% endif %}
+                        {% if hospital.advantage_3 %}
+                        <p style="display: inline-block" class="mb-1">{{ hospital.advantage_3 }}</p>
+                        {% endif %}
+
+                        <h3 class="text-primary mb-2" style="font-size: 34px;font-weight: bold;color: rgb(13, 110, 253);padding-top: 5px;padding-bottom: -2px;">直线距离约为：{{ value|truncatechars:5 }}km</h3>
+
+                    </div>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+        </div>
+
+                        </section>
+                    </div>
+
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<footer class="bg-light footer" style="padding-top: 0px;margin-top: 200px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 text-center text-lg-start my-auto h-100">
+                <ul class="list-inline mb-2">
+                    <li class="list-inline-item"><a href="#">About</a></li>
+                    <li class="list-inline-item"><span>⋅</span></li>
+                    <li class="list-inline-item"><a href="#">Contact</a></li>
+                    <li class="list-inline-item"><span>⋅</span></li>
+                    <li class="list-inline-item"><a href="#">Terms of &nbsp;Use</a></li>
+                    <li class="list-inline-item"><span>⋅</span></li>
+                    <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+                </ul>
+                <p class="text-muted small mb-4 mb-lg-0">© Brand 2023. All Rights Reserved.</p>
+            </div>
+            <div class="col-lg-6 text-center text-lg-end my-auto h-100">
+                <ul class="list-inline mb-0">
+                    <li class="list-inline-item"><a href="#"><i class="fa fa-github fa-2x fa-fw"></i></a></li>
+                    <li class="list-inline-item"><a href="#"><i class="fa fa-qq fa-2x fa-fw"></i></a></li>
+                    <li class="list-inline-item"><a href="#"><i class="fa fa-wechat fa-2x fa-fw"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
+            <script>
+            function setDefaultAddress() {
+              document.getElementById('fullName').value = '{{ user.profile.district}}' + '{{ user.profile.address }}';
+            }
+
+            function clearInput() {
+              document.getElementById('fullName').value = '';
+            }
+            </script>
+
+<script>
+    // 在脚本标签内添加以下 JavaScript 代码
+    function setButtonText(buttonText) {
+        document.getElementById('buttonText').value = buttonText;
+    }
+    function topFunction() {
+document.body.scrollTop = 130;
+document.documentElement.scrollTop = 130;
+}
+</script>
+
+    <script>
+        function submitForm() {
+            var form1Data = new FormData(document.getElementById("form1"));
+            var form2Data = new FormData(document.getElementById("form2"));
+
+            // 将form2的数据合并到form1中
+            form2Data.forEach(function(value, key) {
+                form1Data.append(key, value);
+            });
+
+            // 创建一个临时的<a>元素，用于提交数据
+            var tempLink = document.createElement("a");
+
+            var url = '/../../recommend?' + new URLSearchParams(form1Data).toString();
+            window.location.href = url
+
+
+            // 模拟点击该<a>元素，提交数据
+            tempLink.click();
+        }
+    </script>
+
+<script>
+        const submitBtn = document.getElementById("submitBtn");
+        submitBtn.addEventListener("click", function() {
+            const form1Data = new FormData(document.getElementById("form1"));
+            const form2Data = new FormData(document.getElementById("form2"));
+
+            // 将两个表单的数据合并
+            const mergedFormData = new FormData();
+            for (const [key, value] of form1Data) {
+                mergedFormData.append(key, value);
+            }
+            for (const [key, value] of form2Data) {
+                mergedFormData.append(key, value);
+            }
+
+            // 使用GET请求发送数据到服务器
+            // 将FormData附加到URL的查询参数上
+            let queryString = "?";
+            for (const [key, value] of mergedFormData) {
+                queryString += `${encodeURIComponent(key)}=${encodeURIComponent(value)}&`;
+            }
+
+            // 构建完整的URL，去除最后一个多余的"&"
+            const url = "../recommend/" + queryString.slice(0, -1);
+
+            // 发送GET请求
+            fetch(url, {
+                method: "GET"
+            })
+
+        });
+    </script>
+
+
+<script src="/static/bootstrap/js/bootstrap.min.js"></script>
+<script src="/static/js/Collapsible-Sidebar-Sidebar.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+<script src="https://geodata.solutions/includes/countrystate.js"></script>
+<script src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"></script>
+</body>
+
+</html>

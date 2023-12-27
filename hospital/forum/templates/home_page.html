@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ch">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>首页</title>
+    <link rel="icon" type="image/x-icon" href="/static/img/slogan.jpg">
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Aclonica&amp;display=swap">
+    <link rel="stylesheet" href="/static/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/fonts/simple-line-icons.min.css">
+    <link rel="stylesheet" href="/static/css/aos.min.css">
+    <link rel="stylesheet" href="/static/css/animate.min.css">
+    <link rel="stylesheet" href="/static/css/Navbar-Centered-Links-icons.css">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Noto+Sans:300,400,500,600,700&amp;display=swap">
+    <link rel="stylesheet" href="/static/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="/static/fonts/fontawesome5-overrides.min.css">
+    <link rel="stylesheet" href="/static/css/Account-setting-or-edit-profile.css">
+    <link rel="stylesheet" href="/static/css/component.css">
+
+    <link rel="stylesheet" href="/static/css/Login-Form-Basic-icons.css">
+
+</head>
+
+<body>
+<nav class="navbar navbar-light navbar-expand py-3" style="box-shadow: 0px 0px 6px;">
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-center">
+            <img class="bs-icon-lg bs-icon-rounded bs-icon-primary d-flex justify-content-center align-items-center me-2 bs-icon"
+                 src="/static/img/slogan.jpg">
+            <a style="font-size: 40px;" class="nav-link active" href="../">医云</a>
+        </a>
+        <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navcol-3">
+            <span class="visually-hidden">Toggle navigation</span>
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div id="navcol-3" class="collapse navbar-collapse" style="font-weight: bold;color: #000000;font-size: 22px;">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item"><a class="nav-link active" href="../user/">我的主页</a></li>
+                <li class="nav-item"><a class="nav-link active" href="../info/">信息公开</a></li>
+                <li class="nav-item"><a class="nav-link" href="../recommend/"
+                                        style="color: rgba(0,0,0,0.9);">医院推荐</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'forum:hot' 1 %}" style="color: rgba(0,0,0,0.9);">社区论坛</a>
+                </li>
+            </ul>
+
+        </div>
+        {% if user.is_authenticated %}
+        <span style="font-size: 18px;">欢迎您<br/>{{user.username}}</span>
+
+        <div class="dropdown">
+            <a class="btn btn-Info dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" href="#"
+               role="button">
+                <i class="bi bi-person-circle" style="font-size: 15px;"></i>
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="rgb(13, 110, 253)"
+                     class="bi bi-person-circle" viewBox="0 0 16 16">
+                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                    <path fill-rule="evenodd"
+                          d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                </svg>
+            </a>
+
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="../user/">我的主页</a></li>
+                <li><a class="dropdown-item" href="{%url 'logout'%}">登出账户</a></li>
+
+
+            </ul>
+        </div>
+        {% else %}
+        <button class="btn btn-primary" type="button" style="font-size: 20px;font-weight: bold;"
+                onclick="window.location.href = '../../login/'">登录/注册
+        </button>
+        {% endif %}
+    </div>
+</nav>
+
+<header class="text-center text-white masthead"
+        style="background: url('/static/img/bg-masthead.jpg')no-repeat center center;background-size: cover;height: 475px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-9 mx-auto position-relative" style="height: 0px;">
+                <h1 data-aos="fade-right" data-aos-delay="400" class="mb-5" style="height: 400px;font-size: 70px;">
+                    医云，让健康更简单</h1>
+            </div>
+        </div>
+    </div>
+</header>
+<section class="text-center bg-light features-icons">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-lg-4">
+                <div class="mx-auto features-icons-item mb-5 mb-lg-0 mb-lg-3">
+                    <div class="d-flex features-icons-icon"><i class="icon-screen-desktop m-auto text-primary"
+                                                               data-bss-hover-animate="pulse"
+                                                               style="font-size: 109px;"></i></div>
+                    <h3 style="font-size: 40px;"><a class="nav-link active" href="../info/">信息公开</a></h3>
+                    <p class="lead mb-0">Information Overview</p>
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-4">
+                <div class="mx-auto features-icons-item mb-5 mb-lg-0 mb-lg-3">
+                    <div class="d-flex features-icons-icon"><i class="icon-layers m-auto text-primary"
+                                                               data-bss-hover-animate="pulse"
+                                                               style="font-size: 99px;"></i></div>
+                    <h3 style="font-size: 40px;"><a class="nav-link" href="../recommend/">医院推荐</a></h3>
+                    <p class="lead mb-0">Hospital Recommendation</p>
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-4">
+                <div class="mx-auto features-icons-item mb-5 mb-lg-0 mb-lg-3">
+                    <div class="d-flex features-icons-icon"><i class="icon-people m-auto text-primary"
+                                                               data-bss-hover-animate="pulse"
+                                                               style="font-size: 98px;"></i></div>
+                    <h3 style="font-size: 40px;"><a class="nav-link" href="{% url 'forum:hot' 1 %}">社区论坛</a></h3>
+                    <p class="lead mb-0">Community</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="showcase">
+    <div class="container-fluid p-0">
+        <div class="row g-0">
+            <div class="col-lg-6 col-xl-6 my-auto order-lg-1 showcase-text">
+                <h2><strong>稳定全面的数据库</strong></h2>
+                <p class="lead mb-0">
+                    团队数据库收集了全上海各区所有三甲医院的地理位置、简介信息与热门科室，并按区级进行分类，将其与常见疾病进行了匹配存储，定期进行维护。</p>
+            </div>
+            <div class="col-lg-6 text-white order-lg-2 showcase-img"
+                 style="background: url(&quot;/static/img/VCG41N1217664659.jpg&quot;) center / cover;"><span></span>
+            </div>
+        </div>
+        <div class="row g-0">
+            <div class="col-lg-6 my-auto order-lg-1 showcase-text">
+                <h2><strong>个性化的推荐算法</strong></h2>
+                <p class="lead mb-0">
+                    &nbsp;团队基于已有的数据库数据与独创的后端算法，能够基于您的病症描述与特殊需求进行个性化的医院推荐。</p>
+            </div>
+            <div class="col-lg-6 col-xl-6 text-white showcase-img"
+                 style="background: url(&quot;/static/img/c9afde4784c0f8f2f4b7b7dfa69e360.png&quot;);"><span></span>
+            </div>
+        </div>
+        <div class="row g-0">
+            <div class="col-lg-6 text-white order-lg-2 showcase-img"
+                 style="background-image: url(&quot;/static/img/bg-showcase-3.jpg&quot;);"><span></span></div>
+            <div class="col-lg-6 my-auto order-lg-1 showcase-text">
+                <h2>简单实时的交流社区</h2>
+                <p class="lead mb-0">
+                    您可以浏览医云站内所有发布的帖子，搜索自己感兴趣的话题，或是针对其具体的服药或就医体验进行经验分享。</p>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="text-center bg-light testimonials">
+    <div class="container">
+        <h2 class="mb-5">关于医云，他们想说...</h2>
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="mx-auto testimonial-item mb-5 mb-lg-0"><img class="rounded-circle img-fluid mb-3"
+                                                                        src="/static/img/f0f6cb9c0642d551ba4d91c7c42ec1a.jpg">
+                    <h5>Doctor Zhang</h5>
+                    <p class="font-weight-light mb-0">
+                        "医云是个很棒的网站，它对各类信息的收集呈现以及医院推荐都很周到!"</p>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="mx-auto testimonial-item mb-5 mb-lg-0"><img class="rounded-circle img-fluid mb-3"
+                                                                        src="/static/img/VCG21gic20070468.jpg">
+                    <h5>Doctor Tan</h5>
+                    <p class="font-weight-light mb-0">
+                        "从医生的角度来看，医云给予了患者更便携的医疗资源获取途径，增强了患者与医生之间的互动和沟通。"</p>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="mx-auto testimonial-item mb-5 mb-lg-0"><img class="rounded-circle img-fluid mb-3"
+                                                                        src="/static/img/VCG21765a44844.jpg">
+                    <h5>Mr&amp;Mrs Wang</h5>
+                    <p class="font-weight-light mb-0">
+                        "医云的网站建立者为我们提供了一个医院的百科全书，一个个性化的会诊管家以及一个友好交流的平台!"</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="text-center text-white call-to-action"
+         style="background: url(&quot;/static/img/bg-masthead.jpg&quot;) no-repeat center center;background-size: cover;">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="mx-auto position-relative">
+                <h2 class="mb-5">准备好了吗？即刻启程医云之旅！</h2>
+            </div>
+            {% if user.is_authenticated %}
+            {% else %}
+            <div class="mx-auto position-relative">
+                <form>
+                    <div class="row">
+                        <div>
+                            <button class="btn btn-primary btn-lg" type="button" style="font-weight: bold;font-size: 25px;"
+                                    onclick="window.location.href = '../../register/'">点击注册
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+<footer class="bg-light footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 text-center text-lg-start my-auto h-100">
+                <ul class="list-inline mb-2">
+                    <li class="list-inline-item"><a href="#">About</a></li>
+                    <li class="list-inline-item"><span>⋅</span></li>
+                    <li class="list-inline-item"><a href="#">Contact</a></li>
+                    <li class="list-inline-item"><span>⋅</span></li>
+                    <li class="list-inline-item"><a href="#">Terms of &nbsp;Use</a></li>
+                    <li class="list-inline-item"><span>⋅</span></li>
+                    <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+                </ul>
+                <p class="text-muted small mb-4 mb-lg-0">© Brand 2023. All Rights Reserved.</p>
+            </div>
+            <div class="col-lg-6 text-center text-lg-end my-auto h-100">
+                <ul class="list-inline mb-0">
+                    <li class="list-inline-item"><a href="#"><i class="fa fa-github fa-2x fa-fw"></i></a></li>
+                    <li class="list-inline-item"><a href="#"><i class="fa fa-qq fa-2x fa-fw"></i></a></li>
+                    <li class="list-inline-item"><a href="#"><i class="fa fa-wechat fa-2x fa-fw"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<script src="/static/bootstrap/js/bootstrap.min.js"></script>
+<script src="/static/js/aos.min.js"></script>
+<script src="/static/js/bs-init.js"></script>
+
+</body>
+
+</html>

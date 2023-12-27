@@ -1,0 +1,8 @@
+1、配置虚拟环境，将整个项目文件放入其中
+2、import一些必要的包
+相关指令：
+pip install Django
+pip install mssql
+pip install pymysql
+pip install mysqlclient
+3、在终端执行python manage.py runserver，点击网址即可
